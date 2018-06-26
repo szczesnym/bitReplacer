@@ -12,6 +12,7 @@ public class BitReplacer {
     public BitReplacer(String directoryToStart, String fileExtension) throws IOException {
         this.directoryToStart = directoryToStart;
         this.fileExtension = fileExtension;
+
         BitReplacerFileVisitor bitReplacerFileVisitor = new BitReplacerFileVisitor(fileExtension);
         Files.walkFileTree(Paths.get(directoryToStart), bitReplacerFileVisitor);
         this.filesToEdit = bitReplacerFileVisitor.getFilesMatchingFilePattern();
@@ -21,7 +22,7 @@ public class BitReplacer {
 
         for (Path file : filesToEdit) {
             byte[] fileContent = Files.readAllBytes(file);
-            System.out.format("For file:%s ",file);
+            System.out.format("For file:%s ", file);
             byte[] resultReplace = replaceContent(fileContent, patternToFind, patternToReplaceWith);
             try {
                 Files.write(file, resultReplace, StandardOpenOption.TRUNCATE_EXISTING);
@@ -43,7 +44,7 @@ public class BitReplacer {
                 fileContentBytes[i] = target[i];
             }
         }
-        System.out.format(" pattern:%d replaced:%d time(s)\n", (int)patternToFind, replaceCount);
+        System.out.format(" pattern:%d replaced:%d time(s)\n", (int) patternToFind, replaceCount);
         return fileContentBytes;
     }
 }

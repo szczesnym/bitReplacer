@@ -1,12 +1,9 @@
 package com.bitReplacer;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import static javafx.application.Platform.exit;
 
 public class Application {
 
@@ -17,17 +14,12 @@ public class Application {
         System.out.print("will search all text files from c:\\ and subfolders and will replace each 'a'(97) to 'b'(98)\n");
     }
 
-    public boolean parseParams(String[] args) {
-
-        return true;
-    }
-
     public static void main(String[] args) throws IOException {
         Path directoryToStart;
         byte bytePatternToSearch = 0, bytePatternToReplace = 0;
         String fileExtension;
 
-        if(args.length!=4 ) {
+        if (args.length != 4) {
             System.out.println("Wrong parameters count -> exiting");
             usage();
             System.exit(-1);
@@ -41,7 +33,7 @@ public class Application {
             System.exit(-1);
         }
 
-        try{
+        try {
             bytePatternToSearch = new Byte(args[2]);
         } catch (NumberFormatException e) {
             System.out.println("parameter 3 is not a valid byte -> existing");
@@ -49,7 +41,7 @@ public class Application {
             System.exit(-1);
         }
 
-        try{
+        try {
             bytePatternToReplace = new Byte(args[3]);
         } catch (NumberFormatException e) {
             System.out.println("parameter 4 is not a valid byte -> existing");
@@ -57,7 +49,6 @@ public class Application {
             System.exit(-1);
         }
         fileExtension = args[1];
-
         BitReplacer bitReplacer = new BitReplacer(args[0], fileExtension);
         bitReplacer.replace(bytePatternToSearch, bytePatternToReplace);
     }

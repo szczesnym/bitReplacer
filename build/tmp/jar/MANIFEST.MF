@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: Gradle
+Implementation-Title: Gradle Quickstart
 Implementation-Version: 1.0-SNAPSHOT
+Main-Class: com.bitReplacer.Application
 
